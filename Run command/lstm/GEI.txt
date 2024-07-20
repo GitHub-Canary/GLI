@@ -1,0 +1,50 @@
+args = dotdict()
+
+args.model = 'informer' # model of experiment, options: [informer, informerstack, informerlight(TBD)]
+
+args.data = 'custom' # data
+args.root_path = './data/ETT/' # root path of data file
+args.data_path = 'GEI.csv' # data file
+args.features = 'S' # forecasting task, options:[M, S, MS]; M:multivariate predict multivariate, S:univariate predict univariate, MS:multivariate predict univariate
+args.target = 'value1' # target feature in S or MS task
+
+args.checkpoints = './informer_checkpoints' # location of model checkpoints
+
+args.seq_len = 48 # input sequence length of Informer encoder
+args.label_len = 48 # start token length of Informer decoder
+args.pred_len = 24 # prediction sequence length
+# Informer decoder input: concat[start token series(label_len), zero padding series(pred_len)]
+
+args.input_size=1
+args.hidden_size=8
+args.output_size=1
+args.num_layers=2
+
+
+
+
+
+
+args.padding = 0
+args.freq = 'h'
+
+args.batch_size = 32 
+args.learning_rate = 0.0001
+args.loss = 'mse'
+args.lradj = 'type1'
+args.use_amp = False # whether to use automatic mixed precision training
+
+args.num_workers = 0
+args.itr = 1
+args.train_epochs = 6
+args.patience = 3
+args.des = 'exp'
+
+
+args.use_gpu = True if torch.cuda.is_available() else False
+args.gpu = 0
+
+args.use_multi_gpu = False
+args.devices = '0,1,2,3'
+
+#args.inverse = True
